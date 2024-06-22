@@ -73,7 +73,7 @@ class GameOfLife:
                     self.cells[row][col].update_state()
 
             self.draw_grid()
-            self.master.after(100, self.update)
+            self.window.after(100, self.update)
     
 
     
