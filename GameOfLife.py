@@ -43,9 +43,9 @@ class GameOfLife:
         "Draw the grid in canvas "
         for row in range(self.rows):
             for col in range(self.cols):
-                x1 = col * self.size
+                x1 = col * self.size # x1 and y1 are the coordinates of the upper left corner of the rectangle.
                 y1 = row * self.size
-                x2 = x1 + self.size
+                x2 = x1 + self.size #x2 and y2 are the coordinates of the lower right corner of the rectangle.
                 y2 = y1 + self.size
                 color = "black" if self.cells[row][col].state else "white"
                 self.canvas.create_rectangle(x1, y1, x2, y2, fill=color, outline="gray")
