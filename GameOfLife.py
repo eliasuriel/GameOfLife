@@ -16,6 +16,7 @@ class GameOfLife:
         self.window.bind("<space>", self.toggle_running)
 
         self.draw_grid()
+        self.update()
 
     def create_row(self, cols):
         "Create a row of cells."
@@ -58,3 +59,21 @@ class GameOfLife:
             if 0 <= r < self.rows and 0 <= c < self.cols and self.cells[r][c].state: #checked if the neighbor coordinates are within the grid boundaries and if the cell at that position is alive .
                 count += 1
         return count
+    
+    def update(self):
+        "Update the state of the game."
+        if self.running:
+            for row in range(self.rows):
+                for col in range(self.cols):
+                    live_neighbors = self.count_live_neighbors(row, col)
+                    self.cells[row][col].following_state(live_neighbors)
+                    
+            for row in range(self.rows):
+                for col in range(self.cols):
+                    self.cells[row][col].update_state()
+
+            self.draw_grid()
+            self.master.after(100, self.update)
+    
+
+    
